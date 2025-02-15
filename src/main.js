@@ -3,11 +3,22 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const errorIcon = './img/errorIcon.svg';
+const closeIcon = './img/closeIcon.svg';
 export const iziOpt = {
   messageColor: '#FAFAFB',
   messageSize: '16px',
   backgroundColor: '#EF4040',
   iconUrl: errorIcon,
+  close: false,
+  buttons: [
+    [
+      `<button><img src = "${closeIcon}"/></button>`,
+      function (instance, toast) {
+        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+      },
+      true,
+    ],
+  ],
   transitionIn: 'bounceInLeft',
   position: 'topRight',
   displayMode: 'replace',
@@ -20,7 +31,7 @@ export const refs = {
 };
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
-  const userKeyword = e.target.elements.imageKey.value.trim().toLowerCase();
+  let userKeyword = e.target.elements.imageKey.value.trim().toLowerCase();
   if (!userKeyword) {
     refs.galleryBox.innerHTML = '';
     iziToast.show({
@@ -28,7 +39,11 @@ refs.form.addEventListener('submit', e => {
       message: 'Please fill the search keyword',
     });
   }
+  e.target.value = '';
   refs.galleryBox.innerHTML =
-    '<p class="loader">Loading images, please wait... <span class="loader"></span></p>';
+    '<p class="loader-text">Loading images, please wait... <span class="loader"></span></p>';
   getImages(userKeyword);
+  setTimeout(() => {
+    e.target.reset();
+  }, 10);
 });
