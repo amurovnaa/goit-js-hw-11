@@ -1,9 +1,9 @@
 import { getImages } from './js/pixabay-api';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import errorIcon from './img/errorIcon.svg';
+import closeIcon from './img/closeIcon.svg';
 
-const errorIcon = './img/errorIcon.svg';
-const closeIcon = './img/closeIcon.svg';
 export const iziOpt = {
   messageColor: '#FAFAFB',
   messageSize: '16px',
