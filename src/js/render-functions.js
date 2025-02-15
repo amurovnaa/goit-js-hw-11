@@ -15,8 +15,9 @@ export function markupRender(data) {
         downloads,
       }) => `<li class='gallery-item'>
         <a class='gallery-link' href="${largeImageURL}">
+        <div class gallery-block>
         <img class='gallery-img' src="${webformatURL}" alt="${tags}" />
-          <div class="details">
+          <div class="gallery-details">
             <div class = "descr">
             <p>Likes</p>
             <span>${likes}</span>
@@ -26,13 +27,14 @@ export function markupRender(data) {
             <span>${views}</span>
             </div>
             <div class = "descr">
-            <p>Comment</p>
+            <p>Comments</p>
             <span>${comments}</span>
             </div>
             <div class = "descr">
             <p>Downloads</p>
             <span>${downloads}</span>
             </div>
+          </div>
           </div>
         </a>
       </li>`

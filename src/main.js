@@ -2,11 +2,12 @@ import { getImages } from './js/pixabay-api';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+const errorIcon = './img/errorIcon.svg';
 export const iziOpt = {
   messageColor: '#FAFAFB',
   messageSize: '16px',
   backgroundColor: '#EF4040',
-  //   iconUrl: errorIcon,
+  iconUrl: errorIcon,
   transitionIn: 'bounceInLeft',
   position: 'topRight',
   displayMode: 'replace',
@@ -19,7 +20,7 @@ export const refs = {
 };
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
-  const userKeyword = e.target.elements.imageKey.value.trim();
+  const userKeyword = e.target.elements.imageKey.value.trim().toLowerCase();
   if (!userKeyword) {
     refs.galleryBox.innerHTML = '';
     iziToast.show({
@@ -28,6 +29,6 @@ refs.form.addEventListener('submit', e => {
     });
   }
   refs.galleryBox.innerHTML =
-    '<p>Loading images, please wait... <span class="loader"></span></p>';
+    '<p class="loader">Loading images, please wait... <span class="loader"></span></p>';
   getImages(userKeyword);
 });
