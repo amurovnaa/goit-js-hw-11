@@ -19,18 +19,17 @@ export function getImages(userImgKeyword) {
     .get(apiUrl, params)
     .then(res => {
       if (!res.data.hits.length) {
+        refs.galleryBox.innerHTML = '';
         iziToast.show({
           ...iziOpt,
           message:
             'Sorry, there are no images matching your search query. Please, try again!',
         });
-        refs.box.innerHTML = '';
-      } else {
-        markupRender(res.data.hits);
       }
+      markupRender(res.data.hits);
     })
     .catch(error => {
       console.log(error);
-      refs.box.innerHTML = '';
+      refs.galleryBox.innerHTML = '';
     });
 }

@@ -1,3 +1,5 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from '..//main.js';
 
 export function markupRender(data) {
@@ -36,5 +38,12 @@ export function markupRender(data) {
       </li>`
     )
     .join(' ');
-  refs.box.innerHTML = markup;
+  refs.galleryBox.innerHTML = markup;
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+    captionPosition: 'bottom',
+    showCounter: false,
+  });
+  lightbox.refresh();
 }
