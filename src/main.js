@@ -31,7 +31,7 @@ export const refs = {
 };
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
-  let userKeyword = e.target.elements.imageKey.value.trim().toLowerCase();
+  const userKeyword = e.target.elements.imageKey.value.toLowerCase().trim();
   if (!userKeyword) {
     refs.galleryBox.innerHTML = '';
     iziToast.show({
@@ -39,7 +39,6 @@ refs.form.addEventListener('submit', e => {
       message: 'Please fill the search keyword',
     });
   }
-  e.target.value = '';
   refs.galleryBox.innerHTML =
     '<p class="loader-text">Loading images, please wait... <span class="loader"></span></p>';
   getImages(userKeyword);

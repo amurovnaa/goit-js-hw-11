@@ -29,7 +29,11 @@ export function getImages(userImgKeyword) {
       markupRender(res.data.hits);
     })
     .catch(error => {
-      console.log(error);
+      iziToast.show({
+        ...iziOpt,
+        message: 'Sorry, request error!',
+      });
       refs.galleryBox.innerHTML = '';
+      console.log(error);
     });
 }
